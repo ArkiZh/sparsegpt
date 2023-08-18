@@ -1,0 +1,813 @@
+py/launcher 35811 -- /home/zk/repos/sparsegpt/opt.py 
+[2023-08-18 04:18:25,644] [INFO] [real_accelerator.py:133:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+Eval before sparse:
+wikitext2
+Evaluating ...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Perplexity: 27.654716
+ptb
+Evaluating ...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Perplexity: 38.987122
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+c4
+Evaluating ...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Perplexity: 26.563681
+## Before sparse
+====================================================================================================
+model.decoder.embed_tokens.weight-----------------------------------torch.nn.modules.sparse.Embedding---------------------------38608896-----------[50272, 768]---torch.float16  
+model.decoder.embed_positions.weight--------------------------------transformers.models.opt.modeling_opt.OPTLearnedPositionalEmbedding-----------1574400------------[2050, 768]---torch.float16  
+model.decoder.final_layer_norm.weight-------------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.final_layer_norm.bias---------------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.0.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.0.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.0.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.0.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.0.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.0.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.0.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.1.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.1.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.1.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.1.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.1.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.1.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.1.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.2.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.2.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.2.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.2.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.2.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.2.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.2.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.3.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.3.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.3.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.3.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.3.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.3.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.3.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.4.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.4.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.4.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.4.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.4.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.4.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.4.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.5.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.5.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.5.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.5.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.5.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.5.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.5.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.6.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.6.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.6.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.6.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.6.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.6.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.6.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.7.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.7.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.7.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.7.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.7.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.7.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.7.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.8.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.8.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.8.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.8.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.8.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.8.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.8.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.9.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.9.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.9.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.9.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.9.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.9.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.9.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn.k_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.10.self_attn.k_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn.v_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.10.self_attn.v_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn.q_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.10.self_attn.q_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn.out_proj.weight-------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.10.self_attn.out_proj.bias---------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn_layer_norm.weight-----------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn_layer_norm.bias-------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.fc1.weight----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.10.fc1.bias------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.10.fc2.weight----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.10.fc2.bias------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.final_layer_norm.weight---------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.final_layer_norm.bias-----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn.k_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.11.self_attn.k_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn.v_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.11.self_attn.v_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn.q_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.11.self_attn.q_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn.out_proj.weight-------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.11.self_attn.out_proj.bias---------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn_layer_norm.weight-----------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn_layer_norm.bias-------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.fc1.weight----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.11.fc1.bias------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.11.fc2.weight----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.11.fc2.bias------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.final_layer_norm.weight---------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.final_layer_norm.bias-----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+Total num: 125239296 is 0.125239296 Billion. GPU mem: 0.2332763671875 GB
+End. Before sparse 
+
+
+Starting ...
+Ready.
+0 self_attn.k_proj
+Pruning ...
+time 0.57
+error 13941.1669921875
+0 self_attn.v_proj
+Pruning ...
+time 0.16
+error 547.517333984375
+0 self_attn.q_proj
+Pruning ...
+time 0.16
+error 14149.162109375
+0 self_attn.out_proj
+Pruning ...
+time 0.15
+error 6.3902764320373535
+0 fc1
+Pruning ...
+time 0.15
+error 2260.55126953125
+0 fc2
+Pruning ...
+time 0.61
+error 36.47806167602539
+1 self_attn.k_proj
+Pruning ...
+time 0.19
+error 9683.126953125
+1 self_attn.v_proj
+Pruning ...
+time 0.16
+error 641.4113159179688
+1 self_attn.q_proj
+Pruning ...
+time 0.15
+error 4021.76171875
+1 self_attn.out_proj
+Pruning ...
+time 0.24
+error 4.0276031494140625
+1 fc1
+Pruning ...
+time 0.15
+error 6267.2294921875
+1 fc2
+Pruning ...
+time 0.60
+error 14.22422981262207
+2 self_attn.k_proj
+Pruning ...
+time 0.17
+error 15794.5810546875
+2 self_attn.v_proj
+Pruning ...
+time 0.15
+error 1677.373291015625
+2 self_attn.q_proj
+Pruning ...
+time 0.15
+error 14260.62890625
+2 self_attn.out_proj
+Pruning ...
+time 0.23
+error 9.773924827575684
+2 fc1
+Pruning ...
+time 0.16
+error 5067.912109375
+2 fc2
+Pruning ...
+time 0.62
+error 10.702143669128418
+3 self_attn.k_proj
+Pruning ...
+time 0.15
+error 14274.2236328125
+3 self_attn.v_proj
+Pruning ...
+time 0.15
+error 2321.777587890625
+3 self_attn.q_proj
+Pruning ...
+time 0.15
+error 14306.8056640625
+3 self_attn.out_proj
+Pruning ...
+time 0.24
+error 15.896759033203125
+3 fc1
+Pruning ...
+time 0.15
+error 3084.8525390625
+3 fc2
+Pruning ...
+time 0.62
+error 0.4819948673248291
+4 self_attn.k_proj
+Pruning ...
+time 0.17
+error 27287.78515625
+4 self_attn.v_proj
+Pruning ...
+time 0.15
+error 3168.80859375
+4 self_attn.q_proj
+Pruning ...
+time 0.16
+error 29174.47265625
+4 self_attn.out_proj
+Pruning ...
+time 0.23
+error 24.233078002929688
+4 fc1
+Pruning ...
+time 0.15
+error 7956.533203125
+4 fc2
+Pruning ...
+time 0.62
+error 29.867591857910156
+5 self_attn.k_proj
+Pruning ...
+time 0.22
+error 29595.09375
+5 self_attn.v_proj
+Pruning ...
+time 0.16
+error 2875.639404296875
+5 self_attn.q_proj
+Pruning ...
+time 0.15
+error 34855.5
+5 self_attn.out_proj
+Pruning ...
+time 0.23
+error 38.77702331542969
+5 fc1
+Pruning ...
+time 0.13
+error 8122.052734375
+5 fc2
+Pruning ...
+time 0.53
+error 71.43145751953125
+6 self_attn.k_proj
+Pruning ...
+time 0.32
+error 31934.08203125
+6 self_attn.v_proj
+Pruning ...
+time 0.16
+error 3905.890869140625
+6 self_attn.q_proj
+Pruning ...
+time 0.19
+error 33765.6328125
+6 self_attn.out_proj
+Pruning ...
+time 0.25
+error 48.69498825073242
+6 fc1
+Pruning ...
+time 0.15
+error 8043.3974609375
+6 fc2
+Pruning ...
+time 0.55
+error 101.37310028076172
+7 self_attn.k_proj
+Pruning ...
+time 0.25
+error 39229.6640625
+7 self_attn.v_proj
+Pruning ...
+time 0.13
+error 4535.72900390625
+7 self_attn.q_proj
+Pruning ...
+time 0.13
+error 39020.75390625
+7 self_attn.out_proj
+Pruning ...
+time 0.32
+error 82.58232116699219
+7 fc1
+Pruning ...
+time 0.13
+error 10325.857421875
+7 fc2
+Pruning ...
+time 0.52
+error 137.21376037597656
+8 self_attn.k_proj
+Pruning ...
+time 0.44
+error 40004.40625
+8 self_attn.v_proj
+Pruning ...
+time 0.14
+error 6432.6044921875
+8 self_attn.q_proj
+Pruning ...
+time 0.14
+error 44621.64453125
+8 self_attn.out_proj
+Pruning ...
+time 0.14
+error 161.0196533203125
+8 fc1
+Pruning ...
+time 0.14
+error 14338.498046875
+8 fc2
+Pruning ...
+time 0.54
+error 227.52764892578125
+9 self_attn.k_proj
+Pruning ...
+time 0.20
+error 47131.0703125
+9 self_attn.v_proj
+Pruning ...
+time 0.13
+error 7608.5380859375
+9 self_attn.q_proj
+Pruning ...
+time 0.13
+error 51146.8515625
+9 self_attn.out_proj
+Pruning ...
+time 0.13
+error 272.233642578125
+9 fc1
+Pruning ...
+time 0.13
+error 19689.38671875
+9 fc2
+Pruning ...
+time 0.52
+error 370.8931884765625
+10 self_attn.k_proj
+Pruning ...
+time 0.32
+error 44675.4921875
+10 self_attn.v_proj
+Pruning ...
+time 0.13
+error 9520.578125
+10 self_attn.q_proj
+Pruning ...
+time 0.14
+error 43787.4453125
+10 self_attn.out_proj
+Pruning ...
+time 0.30
+error 261.854736328125
+10 fc1
+Pruning ...
+time 0.13
+error 24776.92578125
+10 fc2
+Pruning ...
+time 0.70
+error 579.3060913085938
+11 self_attn.k_proj
+Pruning ...
+time 0.18
+error 43893.70703125
+11 self_attn.v_proj
+Pruning ...
+time 0.16
+error 11826.92578125
+11 self_attn.q_proj
+Pruning ...
+time 0.16
+error 46730.68359375
+11 self_attn.out_proj
+Pruning ...
+time 0.24
+error 435.9056091308594
+11 fc1
+Pruning ...
+time 0.16
+error 27319.041015625
+11 fc2
+Pruning ...
+time 0.62
+error 612.3131713867188
+model.decoder.embed_tokens.weight tensor(3.8851e-07)
+model.decoder.embed_positions.weight tensor(0.0005)
+model.decoder.final_layer_norm.weight tensor(0., device='cuda:0')
+model.decoder.final_layer_norm.bias tensor(0., device='cuda:0')
+model.decoder.layers.0.self_attn.k_proj.weight tensor(0.5000)
+model.decoder.layers.0.self_attn.k_proj.bias tensor(0.)
+model.decoder.layers.0.self_attn.v_proj.weight tensor(0.5000)
+model.decoder.layers.0.self_attn.v_proj.bias tensor(0.)
+model.decoder.layers.0.self_attn.q_proj.weight tensor(0.5000)
+model.decoder.layers.0.self_attn.q_proj.bias tensor(0.)
+model.decoder.layers.0.self_attn.out_proj.weight tensor(0.5000)
+model.decoder.layers.0.self_attn.out_proj.bias tensor(0.)
+model.decoder.layers.0.self_attn_layer_norm.weight tensor(0.)
+model.decoder.layers.0.self_attn_layer_norm.bias tensor(0.)
+model.decoder.layers.0.fc1.weight tensor(0.5000)
+model.decoder.layers.0.fc1.bias tensor(0.)
+model.decoder.layers.0.fc2.weight tensor(0.5000)
+31.425113439559937
+## After sparse
+====================================================================================================
+model.decoder.embed_tokens.weight-----------------------------------torch.nn.modules.sparse.Embedding---------------------------38608896-----------[50272, 768]---torch.float16  
+model.decoder.embed_positions.weight--------------------------------transformers.models.opt.modeling_opt.OPTLearnedPositionalEmbedding-----------1574400------------[2050, 768]---torch.float16  
+model.decoder.final_layer_norm.weight-------------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.final_layer_norm.bias---------------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.0.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.0.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.0.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.0.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.0.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.0.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.0.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.0.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.1.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.1.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.1.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.1.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.1.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.1.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.1.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.1.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.2.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.2.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.2.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.2.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.2.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.2.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.2.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.2.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.3.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.3.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.3.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.3.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.3.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.3.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.3.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.3.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.4.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.4.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.4.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.4.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.4.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.4.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.4.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.4.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.5.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.5.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.5.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.5.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.5.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.5.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.5.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.5.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.6.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.6.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.6.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.6.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.6.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.6.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.6.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.6.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.7.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.7.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.7.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.7.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.7.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.7.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.7.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.7.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.8.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.8.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.8.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.8.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.8.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.8.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.8.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.8.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn.k_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.9.self_attn.k_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn.v_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.9.self_attn.v_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn.q_proj.weight----------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.9.self_attn.q_proj.bias------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn.out_proj.weight--------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.9.self_attn.out_proj.bias----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn_layer_norm.weight------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.self_attn_layer_norm.bias--------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.fc1.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.9.fc1.bias-------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.9.fc2.weight-----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.9.fc2.bias-------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.final_layer_norm.weight----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.9.final_layer_norm.bias------------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn.k_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.10.self_attn.k_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn.v_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.10.self_attn.v_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn.q_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.10.self_attn.q_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn.out_proj.weight-------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.10.self_attn.out_proj.bias---------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn_layer_norm.weight-----------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.self_attn_layer_norm.bias-------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.fc1.weight----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.10.fc1.bias------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.10.fc2.weight----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.10.fc2.bias------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.final_layer_norm.weight---------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.10.final_layer_norm.bias-----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn.k_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.11.self_attn.k_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn.v_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.11.self_attn.v_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn.q_proj.weight---------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.11.self_attn.q_proj.bias-----------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn.out_proj.weight-------------------torch.nn.modules.linear.Linear--------------------------------589824-------------[768, 768]---torch.float16  
+model.decoder.layers.11.self_attn.out_proj.bias---------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn_layer_norm.weight-----------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.self_attn_layer_norm.bias-------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.fc1.weight----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[3072, 768]---torch.float16  
+model.decoder.layers.11.fc1.bias------------------------------------torch.nn.modules.linear.Linear----------------------------------3072-----------------[3072]---torch.float16  
+model.decoder.layers.11.fc2.weight----------------------------------torch.nn.modules.linear.Linear-------------------------------2359296------------[768, 3072]---torch.float16  
+model.decoder.layers.11.fc2.bias------------------------------------torch.nn.modules.linear.Linear-----------------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.final_layer_norm.weight---------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+model.decoder.layers.11.final_layer_norm.bias-----------------------torch.nn.modules.normalization.LayerNorm-------------------------768------------------[768]---torch.float16  
+Total num: 125239296 is 0.125239296 Billion. GPU mem: 0.2332763671875 GB
+End. After sparse 
+
+
+Eval after sparse:
+wikitext2
+Evaluating ...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Perplexity: 36.926983
+ptb
+Evaluating ...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Perplexity: 55.464848
+Repo card metadata block was not found. Setting CardData to empty.
+Repo card metadata block was not found. Setting CardData to empty.
+c4
+Evaluating ...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Perplexity: 33.497627
+(torch2) [zk@localhost sparsegpt]$

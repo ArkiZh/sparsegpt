@@ -234,6 +234,8 @@ def opt_eval(model, testenc, dev, dataset: str, log_wandb: bool = False):
 if __name__ == '__main__':
     import argparse
     from datautils import *
+    import sys
+    sys.argv.extend("facebook/opt-125m c4 --sparsity .5".split())
 
     parser = argparse.ArgumentParser()
 
@@ -316,11 +318,21 @@ if __name__ == '__main__':
     model = get_opt(args.model)
     model.eval()
 
+    print("Eval before sparse:")
+    for dataset in ['wikitext2', 'ptb', 'c4']:
+        dataloader, testloader = get_loaders(
+            dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
+        )
+        print(dataset)
+        opt_eval(model, testloader, DEV, dataset, args.log_wandb)
+
     dataloader, testloader = get_loaders(
         args.dataset, nsamples=args.nsamples, seed=args.seed, model=args.model, seqlen=model.seqlen
     )
 
     if (args.sparsity or args.prunen) and not args.gmp:
+        import util
+        util.model_info(model, "Before sparse")
         tick = time.time()
         opt_sequential(model, dataloader, DEV)
         for n, p in model.named_parameters():
@@ -328,7 +340,8 @@ if __name__ == '__main__':
             if 'fc2' in n:
                 break
         print(time.time() - tick)
-
+        util.model_info(model, "After sparse")
+    print("Eval after sparse:")
     for dataset in ['wikitext2', 'ptb', 'c4']:
         dataloader, testloader = get_loaders(
             dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
