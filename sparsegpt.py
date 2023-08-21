@@ -134,8 +134,8 @@ class SparseGPT:
                 print(torch.sum(Losses))
 
         torch.cuda.synchronize()
-        print('time %.2f' % (time.time() - tick))
-        print('error', torch.sum(Losses).item())
+        
+        print(f"         Time: {(time.time() - tick):.2f}s Error: {torch.sum(Losses).item()}")
 
         if isinstance(self.layer, transformers.Conv1D):
             W = W.t()

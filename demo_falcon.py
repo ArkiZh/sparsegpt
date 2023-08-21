@@ -12,31 +12,33 @@ try:
     has_wandb = True
 except:
     has_wandb = False
+import util
 
 
-def get_llama(model):
+def get_model(model):
     import torch
     def skip(*args, **kwargs):
         pass
     torch.nn.init.kaiming_uniform_ = skip
     torch.nn.init.uniform_ = skip
     torch.nn.init.normal_ = skip
-    from transformers import LlamaForCausalLM
-    model = LlamaForCausalLM.from_pretrained(model, torch_dtype='auto')
+    # Load model directly
+    from transformers import AutoModelForCausalLM
+    model = AutoModelForCausalLM.from_pretrained(model, trust_remote_code=True)
     model.seqlen = 2048
+    util.model_info(model, "Origin model")
     return model
 
 
 @torch.no_grad()
-def llama_sequential(model, dataloader, dev):
+def model_sequential(model, dataloader, dev):
     print("Starting...")
 
     use_cache = model.config.use_cache
     model.config.use_cache = False
-    layers = model.model.layers
+    layers = model.transformer.h
 
-    model.model.embed_tokens = model.model.embed_tokens.to(dev)
-    model.model.norm = model.model.norm.to(dev)
+    model.transformer.word_embeddings = model.transformer.word_embeddings.to(dev)
     layers[0] = layers[0].to(dev)
 
     dtype = next(iter(model.parameters())).dtype
@@ -54,6 +56,8 @@ def llama_sequential(model, dataloader, dev):
             inps[cache["i"]] = inp
             cache["i"] += 1
             cache["attention_mask"] = kwargs["attention_mask"]
+            cache["head_mask"] = kwargs["head_mask"]
+            cache["alibi"] = kwargs["alibi"]            
             raise ValueError
 
     layers[0] = Catcher(layers[0])
@@ -65,26 +69,22 @@ def llama_sequential(model, dataloader, dev):
     layers[0] = layers[0].module
 
     layers[0] = layers[0].cpu()
-    model.model.embed_tokens = model.model.embed_tokens.cpu()
-    model.model.norm = model.model.norm.cpu()
+    model.transformer.word_embeddings = model.transformer.word_embeddings.cpu()
     torch.cuda.empty_cache()
 
     outs = torch.zeros_like(inps)
-    attention_mask = cache["attention_mask"]
 
     print("Ready.")
 
     quantizers = {}
     for i in range(len(layers)):
         layer = layers[i].to(dev)
-        full = find_layers(layer)
+        full = find_layers(layer, layers=[type(layer.self_attention.query_key_value)])
 
         if args.true_sequential:
             sequential = [
-                ["self_attn.k_proj", "self_attn.v_proj", "self_attn.q_proj"],
-                ["self_attn.o_proj"],
-                ["mlp.up_proj", "mlp.gate_proj"],
-                ["mlp.down_proj"],
+                ["self_attention.query_key_value","self_attention.dense"],
+                ["mlp.dense_h_to_4h", "mlp.dense_4h_to_h"],
             ]
         else:
             sequential = [list(full.keys())]
@@ -115,13 +115,13 @@ def llama_sequential(model, dataloader, dev):
             for name in subset:
                 handles.append(subset[name].register_forward_hook(add_batch(name)))
             for j in range(args.nsamples):
-                outs[j] = layer(inps[j].unsqueeze(0), attention_mask=attention_mask)[0]
+                outs[j] = layer(inps[j].unsqueeze(0), attention_mask=cache["attention_mask"], head_mask=cache["head_mask"], alibi=cache["alibi"])[0]
             for h in handles:
                 h.remove()
 
             for name in subset:
-                print(i, name)
-                print("Pruning ...")
+                print(f"Pruning: {i} {name}")
+                
                 sparsity = args.sparsity
                 gpts[name].fasterprune(
                     sparsity,
@@ -133,7 +133,7 @@ def llama_sequential(model, dataloader, dev):
                 gpts[name].free()
 
         for j in range(args.nsamples):
-            outs[j] = layer(inps[j].unsqueeze(0), attention_mask=attention_mask)[0]
+            outs[j] = layer(inps[j].unsqueeze(0), attention_mask=cache["attention_mask"], head_mask=cache["head_mask"], alibi=cache["alibi"])[0]
 
         layers[i] = layer.cpu()
         del layer
@@ -148,7 +148,7 @@ def llama_sequential(model, dataloader, dev):
 
 
 @torch.no_grad()
-def llama_eval(model, testenc, dev,  dataset: str, log_wandb: bool = False):
+def model_eval(model, testenc, dev,  dataset: str, log_wandb: bool = False):
     print("Evaluating ...")
 
     testenc = testenc.input_ids
@@ -156,9 +156,9 @@ def llama_eval(model, testenc, dev,  dataset: str, log_wandb: bool = False):
 
     use_cache = model.config.use_cache
     model.config.use_cache = False
-    layers = model.model.layers
+    layers = model.transformer.h
 
-    model.model.embed_tokens = model.model.embed_tokens.to(dev)
+    model.transformer.word_embeddings = model.transformer.word_embeddings.to(dev)
     layers[0] = layers[0].to(dev)
 
     dtype = next(iter(model.parameters())).dtype
@@ -176,6 +176,8 @@ def llama_eval(model, testenc, dev,  dataset: str, log_wandb: bool = False):
             inps[cache["i"]] = inp
             cache["i"] += 1
             cache["attention_mask"] = kwargs["attention_mask"]
+            cache["head_mask"] = kwargs["head_mask"]
+            cache["alibi"] = kwargs["alibi"]
             raise ValueError
 
     layers[0] = Catcher(layers[0])
@@ -188,11 +190,10 @@ def llama_eval(model, testenc, dev,  dataset: str, log_wandb: bool = False):
     layers[0] = layers[0].module
 
     layers[0] = layers[0].cpu()
-    model.model.embed_tokens = model.model.embed_tokens.cpu()
+    model.transformer.word_embeddings = model.transformer.word_embeddings.cpu()
     torch.cuda.empty_cache()
 
     outs = torch.zeros_like(inps)
-    attention_mask = cache["attention_mask"]
 
     for i in range(len(layers)):
         print(i)
@@ -208,23 +209,19 @@ def llama_eval(model, testenc, dev,  dataset: str, log_wandb: bool = False):
                 W.data[torch.abs(W.data) <= thresh] = 0
 
         for j in range(nsamples):
-            outs[j] = layer(inps[j].unsqueeze(0), attention_mask=attention_mask)[0]
+            outs[j] = layer(inps[j].unsqueeze(0), attention_mask=cache["attention_mask"], head_mask=cache["head_mask"], alibi=cache["alibi"])[0]
         layers[i] = layer.cpu()
         del layer
         torch.cuda.empty_cache()
         inps, outs = outs, inps
 
-    if model.model.norm is not None:
-        model.model.norm = model.model.norm.to(dev)
-    model.lm_head = model.lm_head.to(dev)
+    model.transformer.ln_f = model.transformer.ln_f.to(dev)
 
     testenc = testenc.to(dev)
     nlls = []
     for i in range(nsamples):
         hidden_states = inps[i].unsqueeze(0)
-        if model.model.norm is not None:
-            hidden_states = model.model.norm(hidden_states)
-        lm_logits = model.lm_head(hidden_states)
+        lm_logits = model.transformer.ln_f(hidden_states)
         shift_logits = lm_logits[:, :-1, :].contiguous()
         shift_labels = testenc[:, (i * model.seqlen) : ((i + 1) * model.seqlen)][:, 1:]
         loss_fct = nn.CrossEntropyLoss()
@@ -245,7 +242,7 @@ if __name__ == "__main__":
     import argparse
     from datautils import *
     import sys
-    sys.argv.extend("decapoda-research/llama-7b-hf c4 --sparsity 0.5".split())
+    sys.argv.extend("tiiuae/falcon-7b c4 --sparsity 0.5 --true-sequential".split())
     parser = argparse.ArgumentParser()
 
     parser.add_argument("model", type=str, help="LlaMA model to load")
@@ -312,15 +309,15 @@ if __name__ == "__main__":
         assert has_wandb, "wandb not installed try `pip install wandb`"
         wandb.init(config=args)
 
-    model = get_llama(args.model)
+    model = get_model(args.model)
     model.eval()
-    print("Eval before sparse:")
-    for dataset in ["wikitext2", "ptb", "c4"]:
-        dataloader, testloader = get_loaders(
-            dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
-        )
-        print("Dataset:", dataset)
-        llama_eval(model, testloader, DEV, dataset, args.log_wandb)
+    # print("Eval before sparse:")
+    # for dataset in ["wikitext2", "ptb", "c4"]:
+    #     dataloader, testloader = get_loaders(
+    #         dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
+    #     )
+    #     print("Dataset:", dataset)
+    #     model_eval(model, testloader, DEV, dataset, args.log_wandb)
 
     dataloader, testloader = get_loaders(
         args.dataset, nsamples=args.nsamples, seed=args.seed, model=args.model, seqlen=model.seqlen
@@ -330,7 +327,7 @@ if __name__ == "__main__":
         import util
         util.model_info(model, "Before sparse")
         tick = time.time()
-        llama_sequential(model, dataloader, DEV)
+        model_sequential(model, dataloader, DEV)
         for n, p in model.named_parameters():
             print(n, torch.mean((p == 0).float()))
             if 'down_proj' in n:
@@ -343,7 +340,7 @@ if __name__ == "__main__":
             dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
         )
         print("Dataset:", dataset)
-        llama_eval(model, testloader, DEV, dataset, args.log_wandb)
+        model_eval(model, testloader, DEV, dataset, args.log_wandb)
 
     if args.save:
         model.save_pretrained(args.save)

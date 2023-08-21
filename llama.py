@@ -13,6 +13,8 @@ try:
 except:
     has_wandb = False
 
+import util
+
 
 def get_llama(model):
     import torch
@@ -23,6 +25,7 @@ def get_llama(model):
     torch.nn.init.normal_ = skip
     from transformers import LlamaForCausalLM
     model = LlamaForCausalLM.from_pretrained(model, torch_dtype='auto')
+    util.model_info(model, "Origin mdoel")
     model.seqlen = 2048
     return model
 
