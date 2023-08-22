@@ -215,13 +215,15 @@ def model_eval(model, testenc, dev,  dataset: str, log_wandb: bool = False):
         torch.cuda.empty_cache()
         inps, outs = outs, inps
 
-    model.transformer.ln_f = model.transformer.ln_f.to(dev)
+    model.transformer.ln_f.to(dev)
+    model.lm_head.to(dev)
 
     testenc = testenc.to(dev)
     nlls = []
     for i in range(nsamples):
-        hidden_states = inps[i].unsqueeze(0)
-        lm_logits = model.transformer.ln_f(hidden_states)
+        hidden_states = inps[i:i+1]
+        hidden_states = model.transformer.ln_f(hidden_states)
+        lm_logits = model.lm_head(hidden_states)
         shift_logits = lm_logits[:, :-1, :].contiguous()
         shift_labels = testenc[:, (i * model.seqlen) : ((i + 1) * model.seqlen)][:, 1:]
         loss_fct = nn.CrossEntropyLoss()
@@ -242,7 +244,7 @@ if __name__ == "__main__":
     import argparse
     from datautils import *
     import sys
-    sys.argv.extend("tiiuae/falcon-7b c4 --sparsity 0.5 --true-sequential".split())
+    sys.argv.extend("tiiuae/falcon-7b c4 --sparsity 0.5 --true-sequential --nsamples 6 --save models/falcon-prune-0.5-2v4 --prunen 2 --prunem 4".split())
     parser = argparse.ArgumentParser()
 
     parser.add_argument("model", type=str, help="LlaMA model to load")
@@ -311,13 +313,13 @@ if __name__ == "__main__":
 
     model = get_model(args.model)
     model.eval()
-    # print("Eval before sparse:")
-    # for dataset in ["wikitext2", "ptb", "c4"]:
-    #     dataloader, testloader = get_loaders(
-    #         dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
-    #     )
-    #     print("Dataset:", dataset)
-    #     model_eval(model, testloader, DEV, dataset, args.log_wandb)
+    print("Eval before sparse:")
+    for dataset in ["c4"]:
+        dataloader, testloader = get_loaders(
+            dataset, seed=args.seed, model=args.model, seqlen=model.seqlen, nsamples=args.nsamples,
+        )
+        print("Dataset:", dataset)
+        model_eval(model, testloader, DEV, dataset, args.log_wandb)
 
     dataloader, testloader = get_loaders(
         args.dataset, nsamples=args.nsamples, seed=args.seed, model=args.model, seqlen=model.seqlen
@@ -335,7 +337,7 @@ if __name__ == "__main__":
         print(time.time() - tick)
         util.model_info(model, "After sparse")
     print("Eval after sparse:")
-    for dataset in ["wikitext2", "ptb", "c4"]:
+    for dataset in ["c4"]:
         dataloader, testloader = get_loaders(
             dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
         )
@@ -344,3 +346,4 @@ if __name__ == "__main__":
 
     if args.save:
         model.save_pretrained(args.save)
+        

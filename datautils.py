@@ -85,7 +85,7 @@ def get_c4(nsamples, seed, seqlen, model, tokenizer):
         trainloader.append((inp, tar))
 
     valenc = tokenizer(' '.join(valdata[:1100]['text']), return_tensors='pt')
-    valenc = valenc.input_ids[:, :(256 * seqlen)]
+    valenc = valenc.input_ids[:, :(nsamples * seqlen)]
 
     class TokenizerWrapper:
         def __init__(self, input_ids):
