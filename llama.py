@@ -123,8 +123,7 @@ def llama_sequential(model, dataloader, dev):
                 h.remove()
 
             for name in subset:
-                print(i, name)
-                print("Pruning ...")
+                print(f"Pruning: {i} {name}")
                 sparsity = args.sparsity
                 gpts[name].fasterprune(
                     sparsity,
@@ -248,7 +247,7 @@ if __name__ == "__main__":
     import argparse
     from datautils import *
     import sys
-    sys.argv.extend("decapoda-research/llama-7b-hf c4 --sparsity 0.5".split())
+    sys.argv.extend("decapoda-research/llama-7b-hf c4 --sparsity 0.5 --prunen 2 --prunem 4 --save models/llama-prune-0.5-2v4".split())
     parser = argparse.ArgumentParser()
 
     parser.add_argument("model", type=str, help="LlaMA model to load")
@@ -317,13 +316,13 @@ if __name__ == "__main__":
 
     model = get_llama(args.model)
     model.eval()
-    print("Eval before sparse:")
-    for dataset in ["wikitext2", "ptb", "c4"]:
-        dataloader, testloader = get_loaders(
-            dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
-        )
-        print("Dataset:", dataset)
-        llama_eval(model, testloader, DEV, dataset, args.log_wandb)
+    # print("Eval before sparse:")
+    # for dataset in ["wikitext2", "ptb", "c4"]:
+    #     dataloader, testloader = get_loaders(
+    #         dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
+    #     )
+    #     print("Dataset:", dataset)
+    #     llama_eval(model, testloader, DEV, dataset, args.log_wandb)
 
     dataloader, testloader = get_loaders(
         args.dataset, nsamples=args.nsamples, seed=args.seed, model=args.model, seqlen=model.seqlen
@@ -340,13 +339,14 @@ if __name__ == "__main__":
                 break
         print(time.time() - tick)
         util.model_info(model, "After sparse")
-    print("Eval after sparse:")
-    for dataset in ["wikitext2", "ptb", "c4"]:
-        dataloader, testloader = get_loaders(
-            dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
-        )
-        print("Dataset:", dataset)
-        llama_eval(model, testloader, DEV, dataset, args.log_wandb)
+    # print("Eval after sparse:")
+    # for dataset in ["wikitext2", "ptb", "c4"]:
+    #     dataloader, testloader = get_loaders(
+    #         dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
+    #     )
+    #     print("Dataset:", dataset)
+    #     llama_eval(model, testloader, DEV, dataset, args.log_wandb)
 
     if args.save:
         model.save_pretrained(args.save)
+
